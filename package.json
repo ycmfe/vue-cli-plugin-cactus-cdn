@@ -1,0 +1,30 @@
+{
+  "name": "@ycmfe/vue-cli-plugin-cactus-cdn",
+  "version": "1.0.0",
+  "description": "cactus cdn plugin",
+  "files": [
+    "index.js",
+    "cdn"
+  ],
+  "keywords": [
+    "vue",
+    "cli",
+    "cdn",
+    "cactus"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ycmfe/vue-cli-plugin-cactus-cdn.git"
+  },
+  "homepage": "https://github.com/ycmfe/vue-cli-plugin-cactus-cdn.git#readme",
+  "author": "liuqing",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+  },
+  "dependencies": {
+    "yc-webpack-cdn": "^1.0.6"
+  }
+}
