@@ -1,12 +1,16 @@
+const fs = require('fs');
+const path = require('path');
+const WebpackCdnPlugin = require('webpack-cdn-plugin')
 const WebpackYcCdnPlugin = require('yc-webpack-cdn')
-
+const projectRoot = process.cwd();
+const cdnModules = path.resolve(projectRoot, 'cdn.modules.json');
 const defaultOptions = {
-  path, // 需要上传的根目录
-  rule: // 请参考glob的rule格式
-  cdnDir, // 必须。为CDN提供一个目录
-  fileOption, // glob对应的配置，默认为空
-  processNumber: 100 //配置单次处理的进程数,默认为100
+  path: path.resolve(projectRoot, 'build'), // 需要上传的根目录
+  processNumber: 100,//配置单次处理的进程数,默认为100
+  crossOrigin: 'anonymous',
+  modules: []
 }
+
 
 module.exports = (api, options) => {
   const pluginOptions = {
@@ -14,7 +18,7 @@ module.exports = (api, options) => {
     ...options.pluginOptions
   }
 
-  if(!pluginOptions.path || !pluginOptions.cdnDir){
+  if(!pluginOptions.cdnDir){
     throw new Error('Miss path or cdnDir')
   }
 
@@ -23,4 +27,14 @@ module.exports = (api, options) => {
       .plugin('cdn')
         .use(new WebpackYcCdnPlugin(pluginOptions))
   })
+
+  const modules = fs.readFileSync(cdnModules);
+  pluginOptions.modules = JSON.parse(modules);
+
+  api.chainWebpack((webpackConfig) => {
+    webpackConfig
+      .plugin('cdn')
+        .use(new WebpackCdnPlugin(pluginOptions))
+  })
+
 }

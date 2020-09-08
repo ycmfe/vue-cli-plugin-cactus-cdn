@@ -1,6 +1,6 @@
 {
   "name": "@ycmfe/vue-cli-plugin-cactus-cdn",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "cactus cdn plugin",
   "files": [
     "index.js",
@@ -22,9 +22,9 @@
   "publishConfig": {
     "access": "public"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "dependencies": {
+    "webpack-cdn-plugin": "^3.3.1",
     "yc-webpack-cdn": "^1.0.6"
   }
 }
